@@ -1,5 +1,4 @@
-  
-let allIssues = [];
+  let allIssues = [];
 
   async function loadIssues() {
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
@@ -51,14 +50,13 @@ container.innerHTML = "";
 
 issues.forEach(issues => {
 
+  // Card border 
+
   let borderClass = issues.status === "open"? "border-t-2 border-green-500" : 
   "border-t-2 border-[#A855F7]";
 
-
-
-
-
-      let statusImage = "";
+  // Dynamic img 
+let statusImage = "";
 
 if(issues.status === "open"){
   statusImage = "./assets/Open-Status.png";
@@ -69,6 +67,7 @@ else{
 }
 
 
+// priority Based 
 let priorityClass = "";
 
 if(issues.priority === "high"){
@@ -80,9 +79,7 @@ else if(issues.priority === "medium"){
 else{
   priorityClass = "badge-outline bg-[whit]"
 }
-
-
-
+// labels related
 let labelsHTML = "";
 
 issues.labels.forEach(label => {
@@ -106,9 +103,10 @@ labelsHTML += `<span class="badge ${labelClass}">${label}</span>`;
         
         card.className = `${borderClass}`
         card.classList.add("card", "bg-base-100" ,"w-full", "shadow-sm", 'min-h-[280px]')
+
         card.innerHTML = `
                 
-        <div class="">
+        <div>
   
 <div class="card-body">
 <div class="show flex justify-between items-center ">
@@ -134,13 +132,12 @@ ${labelsHTML}
 <p class="text-base text-[#64748B] ">${issues.author}</p>
 <p class="text-base text-[#64748B] ">${issues.createdAt}</p>
     
+  </div> 
   </div>
 
-</div>
+`
 
-
-
-        `
+// Modal btn
 card.addEventListener("click", () => {
 loadSingleIssue(issues.id);
 });
@@ -178,8 +175,10 @@ document.getElementById("tab-closed").addEventListener("click", () => {
 
 
 
-// modal 
 
+
+
+// Modal
 function showIssueModal(issue){
 
   
@@ -228,6 +227,7 @@ priorityClass = "badge-warning";
 else{
 priorityClass = "badge-neutral";
 }
+
 
 modalContent.innerHTML = `
 
