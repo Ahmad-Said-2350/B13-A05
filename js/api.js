@@ -20,6 +20,11 @@ async function loadSingleIssue(id) {
 
 }
 
+
+
+
+
+
  const displayIssues = (issues) => {
 
 const container  = document.getElementById("issueContainer");
@@ -252,5 +257,7 @@ Close
 document.getElementById("issueModal").showModal();
 
 }
+
+
 
 
