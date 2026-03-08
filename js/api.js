@@ -20,9 +20,24 @@ async function loadSingleIssue(id) {
 
 }
 
+async function handleSearch(e){
 
+const searchText = e.target.value;
 
+if(searchText === ""){
+displayIssues(allIssues);
+return;
+}
 
+const res = await fetch(
+`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`
+);
+
+const data = await res.json();
+
+displayIssues(data.data);
+
+}
 
 
  const displayIssues = (issues) => {
@@ -35,6 +50,14 @@ count.innerText = issues.length + " Issues";
 container.innerHTML = "";
 
 issues.forEach(issues => {
+
+  let borderClass = issues.status === "open"? "border-t-2 border-green-500" : 
+  "border-t-2 border-[#A855F7]";
+
+
+
+
+
       let statusImage = "";
 
 if(issues.status === "open"){
@@ -81,6 +104,7 @@ labelsHTML += `<span class="badge ${labelClass}">${label}</span>`;
 });
         const card = document.createElement("div");
         
+        card.className = `${borderClass}`
         card.classList.add("card", "bg-base-100" ,"w-full", "shadow-sm", 'min-h-[280px]')
         card.innerHTML = `
                 
@@ -105,6 +129,7 @@ ${labelsHTML}
 </div>
 
   <div class="divider my-2"></div>
+  
 
 <p class="text-base text-[#64748B] ">${issues.author}</p>
 <p class="text-base text-[#64748B] ">${issues.createdAt}</p>
@@ -258,6 +283,18 @@ document.getElementById("issueModal").showModal();
 
 }
 
+// search
 
+document
+.getElementById("searchInput")
+.addEventListener("input", handleSearch);
 
+document
+.getElementById("searchInput")
+.addEventListener("keyup", function(e){
 
+if(e.key === "Enter"){
+handleSearch(e);
+}
+
+});
