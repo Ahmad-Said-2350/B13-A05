@@ -18,7 +18,7 @@
 <body>
 
   
-    <header class="">
+    <header >
         <div class="navbar bg-base-100 shadow-sm flex justify-between">
 
     <a class="btn btn-ghost text-xl"><img src="./assets/-logo_25231 1.png" alt="">GitHub Issues Tracker</a>
@@ -96,7 +96,9 @@
 
     </section>
 
-            
+    <div id="loader" class="text-center hidden my-10">
+  <span class="loading loading-spinner loading-lg"></span>
+</div>        
 
     
     <section id="issueContainer"  class=" w-11/12 mx-auto  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
@@ -115,10 +117,8 @@
   </form>
 </dialog>
   
-            <script src="./js/api.js"></script>
-                    <script src="./js/app.js"></script>
+                    
 
-
-
+<script src="./js/app.js"></script>
 </body>
 </html>

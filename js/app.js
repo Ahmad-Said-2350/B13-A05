@@ -1,3 +1,5 @@
+  // & API call Content Load
+  
   document.addEventListener("DOMContentLoaded",() =>{
     loadIssues();
 })
@@ -7,12 +9,17 @@
   let allIssues = [];
 
   async function loadIssues() {
+  showLoader();
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
   const data = await res.json();
 
   allIssues = data.data;
 
   displayIssues(allIssues);
+
+
+  hideLoader();
+
 }
 
 async function loadSingleIssue(id) {
@@ -304,3 +311,15 @@ handleSearch(e);
 }
 
 });
+
+// loading-spinner 
+
+
+function showLoader(){
+  document.getElementById("loader").classList.remove("hidden");
+}
+
+function hideLoader(){
+  document.getElementById("loader").classList.add("hidden");
+}
+
