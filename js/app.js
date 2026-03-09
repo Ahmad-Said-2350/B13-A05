@@ -222,7 +222,7 @@ else if(label === "help wanted"){
 labelClass = "badge-warning";
 }
 else{
-labelClass = "badge-neutral";
+labelClass = "badge-outline badge-success";
 }
 
 labelsHTML += `<span class="badge badge-outline ${labelClass}">${label}</span>`;
